@@ -1,0 +1,277 @@
+4.42
+
+
+
+a = float(input("Введите значение a: "))
+b = float(input("Введите значение b: "))
+c = float(input("Введите значение c: "))
+
+def check_inequalities(a, b, c):
+    inequality_a = a < b < c
+    inequality_b = b > a > c
+    return inequality_a, inequality_b
+    
+# Проверка неравенств
+result_a, result_b = check_inequalities(a, b, c)
+
+#результатов
+print(f"Неравенство a < b < c: {result_a}")
+print(f"Неравенство b > a > c: {result_b}")
+
+
+
+4.73
+
+a = float(input("Введите первое число: "))
+b = float(input("Введите второе число: "))
+c = float(input("Введите третье число: "))
+d = float(input("Введите четвертое число: "))
+
+# Нахождение наибольшего числа
+if a > b and a > c and a > d:
+    maximum = a
+elif b > a and b > c and b > d:
+    maximum = b
+elif c > a and c > b and c > d:
+    maximum = c
+else:
+    maximum = d
+
+# Нахождение наименьшего числа
+if a < b and a < c and a < d:
+    minimum = a
+elif b < a and b < c and b < d:
+    minimum = b
+elif c < a and c < b and c < d:
+    minimum = c
+else:
+    minimum = d
+
+#результатов
+print(f"Наибольшее число: {maximum}")
+print(f"Наименьшее число: {minimum}")
+
+
+5.42
+
+exam1 = float(input("Введите оценку за первый экзамен: "))
+exam2 = float(input("Введите оценку за второй экзамен: "))
+exam3 = float(input("Введите оценку за третий экзамен: "))
+exam4 = float(input("Введите оценку за четвертый экзамен: "))
+
+# Вычисление суммы набранных баллов
+total_score = exam1 + exam2 + exam3 + exam4
+
+#результата
+print(f"Сумма набранных баллов: {total_score}")
+
+
+
+5.73
+
+
+
+
+# Начальные условия
+initial_yield = 20  # центнеров с гектара
+initial_area = 100  # гектаров
+
+# Коэффициенты увеличения
+yield_increase_rate = 1.02
+area_increase_rate = 1.05
+
+# Урожайность за второй, третий, ..., восьмой год
+yields = []
+current_yield = initial_yield
+for year in range(2, 9):
+    current_yield *= yield_increase_rate
+    yields.append(current_yield)
+
+print("Урожайность за второй, третий, ..., восьмой год:")
+for year, yield_value in enumerate(yields, start=2):
+    print(f"{year}-й год: {yield_value:.2f} центнеров с гектара")
+
+# Площадь участка в четвертый, пятый, ..., седьмой год
+areas = []
+current_area = initial_area
+for year in range(1, 8):
+    current_area *= area_increase_rate
+    if 4 <= year <= 7:
+        areas.append(current_area)
+
+print("\nПлощадь участка в четвертый, пятый, ..., седьмой год:")
+for year, area_value in enumerate(areas, start=4):
+    print(f"{year}-й год: {area_value:.2f} гектаров")
+
+# Урожай за первые шесть лет
+total_harvest = 0
+current_yield = initial_yield
+current_area = initial_area
+
+for year in range(1, 7):
+    total_harvest += current_yield * current_area
+    current_yield *= yield_increase_rate
+    current_area *= area_increase_rate
+
+print(f"\nОбщий урожай за первые шесть лет: {total_harvest:.2f} центнеров")
+
+
+
+6.42
+
+
+
+# Ввод числа
+number = input("Введите натуральное число, в котором все цифры различны: ")
+
+# Инициализация значений
+max1 = max2 = -1
+min1 = min2 = 10
+max1_pos_start = max2_pos_start = -1
+min1_pos_start = min2_pos_start = -1
+max1_pos_end = max2_pos_end = -1
+min1_pos_end = min2_pos_end = -1
+
+# Перебор цифр числа
+for i, char in enumerate(number):
+    digit = int(char)
+    reverse_index = len(number) - i
+
+    # Проверка и обновление максимальных цифр
+    if digit > max1:
+        max2 = max1
+        max2_pos_start = max1_pos_start
+        max2_pos_end = max1_pos_end
+        max1 = digit
+        max1_pos_start = i + 1
+        max1_pos_end = reverse_index
+    elif digit > max2:
+        max2 = digit
+        max2_pos_start = i + 1
+        max2_pos_end = reverse_index
+
+    # Проверка и обновление минимальных цифр
+    if digit < min1:
+        min2 = min1
+        min2_pos_start = min1_pos_start
+        min2_pos_end = min1_pos_end
+        min1 = digit
+        min1_pos_start = i + 1
+        min1_pos_end = reverse_index
+    elif digit < min2:
+        min2 = digit
+        min2_pos_start = i + 1
+        min2_pos_end = reverse_index
+
+# Вывод результатов
+print(f"Порядковые номера двух максимальных цифр от начала числа: {max1_pos_start}, {max2_pos_start}")
+print(f"Порядковые номера двух максимальных цифр от конца числа: {max1_pos_end}, {max2_pos_end}")
+print(f"Порядковые номера двух минимальных цифр от начала числа: {min1_pos_start}, {min2_pos_start}")
+print(f"Порядковые номера двух минимальных цифр от конца числа: {min1_pos_end}, {min2_pos_end}")
+
+
+
+
+6.73
+
+
+
+
+# Ввод последовательности из 15 целых чисел
+sequence = [int(input(f"Введите элемент а{i+1}: ")) for i in range(15)]
+
+# Инициализация переменной для проверки равенства всех элементов
+all_equal = True
+
+# Первый элемент последовательности
+first_element = sequence[0]
+
+# Проверка остальных элементов
+for element in sequence[1:]:
+    if element != first_element:
+        all_equal = False
+        break
+
+# Вывод результата
+if all_equal:
+    print("Все элементы последовательности равны между собой.")
+else:
+    print("Не все элементы последовательности равны между собой.")
+
+
+
+
+8.42
+
+
+
+
+# Ввод значений m и n
+m = int(input("Введите натуральное число m: "))
+n = int(input("Введите натуральное число n: "))
+
+# Инициализация переменной для накопления суммы
+total_sum = 0
+
+# Вычисление суммы
+for k in range(1, m + 1):
+    total_sum += k ** n
+
+# Вывод результата
+print(f"Сумма 1^({n}) + 2^({n}) + ... + {m}^({n}) = {total_sum}")
+
+
+
+
+8.23
+
+
+
+
+# Ввод стоимости одной штуки каждого вида товара
+prices = []
+for i in range(5):
+    price = float(input(f"Введите стоимость одной штуки товара {i + 1}: "))
+    prices.append(price)
+
+# Ввод количества товаров каждого вида, проданных за каждый из шести дней
+sales = []
+for day in range(6):
+    sales_day = []
+    for i in range(5):
+        quantity = int(input(f"Введите количество проданного товара {i + 1} в день {day + 1}: "))
+        sales_day.append(quantity)
+    sales.append(sales_day)
+
+# а) Общий доход, полученный от продажи каждого вида товара
+total_income_per_product = []
+for i in range(5):
+    income = prices[i] * sum(sales[day][i] for day in range(6))
+    total_income_per_product.append(income)
+    print(f"Общий доход от продаж товара {i + 1}: {income:.2f} руб.")
+
+# б) Общий доход, полученный за каждый день
+total_income_per_day = []
+for day in range(6):
+    daily_income = sum(prices[i] * sales[day][i] for i in range(5))
+    total_income_per_day.append(daily_income)
+    print(f"Общий доход за день {day + 1}: {daily_income:.2f} руб.")
+
+# в) Общий доход магазина за 6 дней
+total_income = sum(total_income_per_day)
+print(f"Общий доход магазина за 6 дней: {total_income:.2f} руб.")
+
+# г) Определение товара с максимальным общим доходом за 6 дней
+max_income_product_index = total_income_per_product.index(max(total_income_per_product)) + 1
+print(f"Товар {max_income_product_index} принес максимальный общий доход за 6 дней.")
+
+# д) Определение дня с максимальным общим доходом
+max_income_day = total_income_per_day.index(max(total_income_per_day)) + 1
+print(f"Максимальный общий доход был получен в день {max_income_day}.")
+
+# е) Количество дней, в которые общий доход от продажи всех видов товара превысил а рублей
+threshold_income = float(input("Введите пороговое значение общего дохода для подсчета дней: "))
+days_exceed_threshold = sum(1 for day_income in total_income_per_day if day_income > threshold_income)
+print(f"Количество дней, когда общий доход превысил {threshold_income} рублей: {days_exceed_threshold} дней.")
+
+
